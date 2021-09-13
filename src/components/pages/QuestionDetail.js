@@ -25,7 +25,7 @@ export default function QuestionDetail() {
         }
       })
       .catch(error => {
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -45,7 +45,7 @@ export default function QuestionDetail() {
         }
       })
       .catch(error => {
-        setVoteError(error);
+        setVoteError(error.message);
       })
       .finally(() => {
         setLoading(false);

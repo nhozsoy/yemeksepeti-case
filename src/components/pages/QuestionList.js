@@ -19,7 +19,7 @@ export default function QuestionList() {
         }
       })
       .catch(error => {
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);

@@ -1,16 +1,49 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../../App.css';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 export default function CreateQuestion() {
   const [questionText, setQuestionText] = useState('');
-  const [choices, setChoices] = useState([]);
+  const [choices, setChoices] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
+
+  const isQuestionValid = () => questionText && choices && choices.length >= 2;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
+    setLoading(true); 
+
+    if (!isQuestionValid()) {
+      setError('Lütfen soru metni ve en az 2 şık girin.')
+    } else {
+      const questionData = {
+        question: questionText,
+        choices: choices.split(',')
+      };
+
+      axios({
+        method: 'post',
+        url: 'https://polls.apiblueprint.org/questions',
+        data: questionData,
+        headers: { "Content-Type": 'application/json' },
+      })
+      .then(response => {
+        if (response.status === 201) {
+          alert('Question created!');
+          setError(null);
+          setQuestionText('');
+          setChoices('');
+        }
+      })
+      .catch(error => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+    }
   };
 
   const renderQuestionForm = () => {
@@ -28,7 +61,7 @@ export default function CreateQuestion() {
         <label className='question-form-label'>
           Choices: <p className='choices-warning-text'>Seperate choices with comma (,)</p>
           <input type='text'
-                 choices={choices}
+                 value={choices}
                  className='question-form-input'
                  placeholder='Interstellar, Godfather, Star Wars'
                  onChange={e => setChoices(e.target.value)} />
