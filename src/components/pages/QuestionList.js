@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../App.css';
+import QuestionTable from '../QuestionTable/QuestionTable';
 
 export default function QuestionList() {
   const [questions, setQuestions] = useState(null);
@@ -34,7 +35,7 @@ export default function QuestionList() {
 
   const renderQuestions = () => {
     return (
-      <p>Questions</p>
+      <QuestionTable question={questions}/>
     )
   };
 
