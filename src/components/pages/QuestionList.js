@@ -13,7 +13,10 @@ export default function QuestionList() {
   useEffect(() => {
     axios.get("https://polls.apiblueprint.org/questions")
       .then(response => {
-        if (response.data) setQuestions(response.data);
+        if (response.data) {
+          setQuestions(response.data);
+          setError(null);
+        }
       })
       .catch(error => {
         setError(error);

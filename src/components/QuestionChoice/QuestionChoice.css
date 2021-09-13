@@ -1,0 +1,15 @@
+.question-choice {
+  padding: 8px 20px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 5px;
+  background-color: #008CBA;
+  color: white;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

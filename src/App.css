@@ -4,6 +4,28 @@
   padding: 0;
 }
 
-.questions-list-page {
+.questions-list-page,
+.questions-detail-page {
   margin: 20px;
+}
+
+.question-container {
+  margin-top: 20px;
+}
+
+.published-at {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.question-choices {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+@media screen and (max-width: 960px) {
+  .question-choices {
+    width: 100%;
+  }
 }
