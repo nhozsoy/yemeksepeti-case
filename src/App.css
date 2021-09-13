@@ -3,3 +3,11 @@
   margin: 0;
   padding: 0;
 }
+
+.questions-list-page {
+  margin: 20px;
+}
+
+.error-message {
+  color: red;
+}
