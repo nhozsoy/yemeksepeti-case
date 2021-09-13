@@ -11,12 +11,14 @@
 
 .question-table tr:nth-child(even){background-color: #f2f2f2;}
 
-.question-table tr:hover {background-color: #ddd;}
-
 .question-table tr th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #04AA6D;
   color: white;
+}
+
+.fa-arrow-right {
+  margin-right: 5px;
 }

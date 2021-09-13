@@ -1,10 +1,14 @@
 import React from 'react';
 import './QuestionTable.css';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { formatDateString } from '../../Helper';
 
 function QuestionTable(props) {
-  return (
-    <table className='question-table'>
+  const { questions } = props;
+
+  const renderTableHead = () => {
+    return (
       <thead>
         <tr>
           <th>Question</th>
@@ -12,16 +16,34 @@ function QuestionTable(props) {
           <th>Vote</th>
         </tr>
       </thead>
+    );
+  };
+
+  const renderTableBody = () => {
+    return (
       <tbody>
-        <tr>
-          <td>Question 1</td>
-          <td>01.01.2021</td>
-          <td>
-            <button></button>
-          </td>
-        </tr>
+        {
+          questions.map(question => (
+            <tr key={question.url}>
+              <td>{question.question}</td>
+              <td>{formatDateString(question.published_at)}</td>
+              <td>
+                <Link to={question.url}>
+                  <i className='fa fa-arrow-right' />
+                  Details
+                </Link>
+              </td>
+            </tr>
+          ))
+        }
       </tbody>
-      
+    );
+  };
+
+  return (
+    <table className='question-table'>
+      {renderTableHead()}
+      {renderTableBody()}
     </table>
   );
 }

@@ -35,7 +35,7 @@ export default function QuestionList() {
 
   const renderQuestions = () => {
     return (
-      <QuestionTable question={questions}/>
+      <QuestionTable questions={questions} />
     )
   };
 
