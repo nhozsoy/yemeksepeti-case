@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import '../../App.css';
-import QuestionTable from '../QuestionTable/QuestionTable';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
 
-export default function QuestionList() {
-  const [questions, setQuestions] = useState(null);
+export default function QuestionDetail() {
+  const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const params = useParams();
+
   useEffect(() => {
-    axios.get("https://polls.apiblueprint.org/questions")
+    axios.get(`https://polls.apiblueprint.org/questions/${params.id}`)
       .then(response => {
-        if (response.data) setQuestions(response.data);
+        if (response.data) setQuestion(response.data);
       })
       .catch(error => {
         setError(error);
@@ -23,18 +25,18 @@ export default function QuestionList() {
       })
   }, []);
 
-  const renderQuestions = () => {
+  const renderQuestion = () => {
     return (
-      <QuestionTable questions={questions} />
+      <p></p>
     )
   };
 
   return (
-    <div className='questions-list-page'>
-      <h1>Question List</h1>
-      {error && <ErrorMessage message={error}/>}
+    <div className='questions-detail-page'>
+      <h1>Question Detail</h1>
+      {error && <ErrorMessage message={error} />}
       {loading && <Loading />}
-      {questions && renderQuestions()}
+      {question && renderQuestion()}
     </div>
   );
 }
