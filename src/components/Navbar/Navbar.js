@@ -34,6 +34,9 @@ function Navbar() {
         <NavbarListItem to='/'
                         onClick={toggleMobileMenu}
                         pageName='Question List' />
+        <NavbarListItem to='/create-question'
+                        onClick={toggleMobileMenu}
+                        pageName='Create Question' />
       </ul>
     );
   };
